@@ -11,11 +11,11 @@ import type {
 export const PRAYER_ORDER: PrayerId[] = ['fajr', 'dhuhr', 'asr', 'maghrib', 'isha'];
 
 export const PRAYER_NAMES_AR: Record<PrayerId, string> = {
-  fajr: 'الفجر',
-  dhuhr: 'الظهر',
-  asr: 'العصر',
-  maghrib: 'المغرب',
-  isha: 'العشاء',
+  fajr: 'الْفَجْر',
+  dhuhr: 'الظُّهْر',
+  asr: 'الْعَصْر',
+  maghrib: 'الْمَغْرِب',
+  isha: 'الْعِشَاء',
 };
 
 export function getDateKey(date: Date): string {
@@ -170,7 +170,7 @@ export function formatClockWithSecondsAr(timestamp: number): {
   const hours12 = hours24 % 12 === 0 ? 12 : hours24 % 12;
   const minutes = String(d.getMinutes()).padStart(2, '0');
   const seconds = String(d.getSeconds()).padStart(2, '0');
-  const period = hours24 >= 12 ? 'مساء' : 'صباحا';
+  const period = hours24 >= 12 ? 'مَسَاءً' : 'صَبَاحًا';
   return {
     time: `${String(hours12).padStart(2, '0')}:${minutes}:${seconds}`,
     period,

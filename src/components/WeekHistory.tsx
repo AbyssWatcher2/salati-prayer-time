@@ -74,7 +74,7 @@ export function WeekHistory({ now, logsByDate, streak }: WeekHistoryProps) {
                   return (
                     <div
                       key={id}
-                      title={`${PRAYER_NAMES_AR[id]}: ${isDone ? 'تمت' : 'لم تعلم'}`}
+                      title={`${PRAYER_NAMES_AR[id]}: ${isDone ? 'تَمَّتْ' : 'لَمْ تُعَلَّمْ'}`}
                       className={`flex h-9 w-11 flex-col items-center justify-center rounded-xl border text-[10px] font-bold ${
                         isDone
                           ? isLate

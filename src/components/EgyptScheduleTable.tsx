@@ -39,42 +39,42 @@ export function EgyptScheduleTable({
   const todayRows = [
     {
       key: 'fajr',
-      name: 'الفجر',
+      name: 'الْفَجْر',
       time: todaySchedule.prayers[0].startTime,
       status: getPrayerStatus(todaySchedule.prayers[0], todayLog.fajr, now),
       isPrayer: true,
     },
     {
       key: 'sunrise',
-      name: 'الشروق',
+      name: 'الشُّرُوق',
       time: todaySchedule.sunrise,
       status: now < todaySchedule.sunrise ? ('upcoming' as const) : ('passed' as const),
       isPrayer: false,
     },
     {
       key: 'dhuhr',
-      name: 'الظهر',
+      name: 'الظُّهْر',
       time: todaySchedule.prayers[1].startTime,
       status: getPrayerStatus(todaySchedule.prayers[1], todayLog.dhuhr, now),
       isPrayer: true,
     },
     {
       key: 'asr',
-      name: 'العصر',
+      name: 'الْعَصْر',
       time: todaySchedule.prayers[2].startTime,
       status: getPrayerStatus(todaySchedule.prayers[2], todayLog.asr, now),
       isPrayer: true,
     },
     {
       key: 'maghrib',
-      name: 'المغرب',
+      name: 'الْمَغْرِب',
       time: todaySchedule.prayers[3].startTime,
       status: getPrayerStatus(todaySchedule.prayers[3], todayLog.maghrib, now),
       isPrayer: true,
     },
     {
       key: 'isha',
-      name: 'العشاء',
+      name: 'الْعِشَاء',
       time: todaySchedule.prayers[4].startTime,
       status: getPrayerStatus(todaySchedule.prayers[4], todayLog.isha, now),
       isPrayer: true,
@@ -147,10 +147,10 @@ export function EgyptScheduleTable({
           <table className="w-full text-right text-xs">
             <thead>
               <tr className="border-b border-[var(--border-subtle)] bg-[var(--bg-card-elevated)] text-[var(--text-secondary)]">
-                <th className="px-3.5 py-2.5 font-bold">الصلاة</th>
-                <th className="px-3 py-2.5 font-bold">الموعد (امتي)</th>
-                <th className="px-3 py-2.5 font-bold">فاضل قد ايه</th>
-                <th className="px-3.5 py-2.5 font-bold">الحالة</th>
+                <th className="px-3.5 py-2.5 font-bold">الصَّلَاةُ</th>
+                <th className="px-3 py-2.5 font-bold">الْمَوْعِدُ</th>
+                <th className="px-3 py-2.5 font-bold">الْوَقْتُ الْمُتَبَقِّي</th>
+                <th className="px-3.5 py-2.5 font-bold">الْحَالَةُ</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-[var(--border-subtle)]">
@@ -158,22 +158,22 @@ export function EgyptScheduleTable({
                 const diff = row.time - now;
                 const remainingText =
                   diff > 0
-                    ? `بعد ${formatDurationArabic(diff)}`
-                    : `منذ ${formatDurationArabic(Math.abs(diff))}`;
+                    ? `بَعْدَ ${formatDurationArabic(diff)}`
+                    : `مُنْذُ ${formatDurationArabic(Math.abs(diff))}`;
 
-                let statusBadge = 'قادمة';
+                let statusBadge = 'قَادِمَةٌ';
                 let badgeClass = 'bg-slate-500/15 text-[var(--text-secondary)]';
                 if (!row.isPrayer) {
-                  statusBadge = diff > 0 ? 'شروق' : 'انتهى';
+                  statusBadge = diff > 0 ? 'شُرُوقٌ' : 'انْتَهَى';
                   badgeClass = 'bg-amber-500/10 text-amber-400';
                 } else if (row.status === 'prayed') {
-                  statusBadge = 'تمت ✓';
+                  statusBadge = 'تَمَّتْ ✓';
                   badgeClass = 'bg-emerald-500/20 text-emerald-400';
                 } else if (row.status === 'due') {
-                  statusBadge = 'وقتها الآن';
+                  statusBadge = 'وَقْتُهَا الْآنَ';
                   badgeClass = 'bg-emerald-500/20 text-emerald-300';
                 } else if (row.status === 'overdue') {
-                  statusBadge = 'فات وقتها';
+                  statusBadge = 'فَاتَ وَقْتُهَا';
                   badgeClass = 'bg-rose-500/20 text-rose-300';
                 }
 
@@ -240,13 +240,13 @@ export function EgyptScheduleTable({
           <table className="w-full min-w-[540px] text-right text-[11px]">
             <thead>
               <tr className="border-b border-[var(--border-subtle)] bg-[var(--bg-card-elevated)] text-[var(--text-secondary)]">
-                <th className="px-3 py-2.5 font-bold">التاريخ</th>
-                <th className="px-2 py-2.5 font-bold">الفجر</th>
-                <th className="px-2 py-2.5 font-bold">الشروق</th>
-                <th className="px-2 py-2.5 font-bold">الظهر</th>
-                <th className="px-2 py-2.5 font-bold">العصر</th>
-                <th className="px-2 py-2.5 font-bold">المغرب</th>
-                <th className="px-2 py-2.5 font-bold">العشاء</th>
+                <th className="px-3 py-2.5 font-bold">التَّارِيخُ</th>
+                <th className="px-2 py-2.5 font-bold">الْفَجْر</th>
+                <th className="px-2 py-2.5 font-bold">الشُّرُوق</th>
+                <th className="px-2 py-2.5 font-bold">الظُّهْر</th>
+                <th className="px-2 py-2.5 font-bold">الْعَصْر</th>
+                <th className="px-2 py-2.5 font-bold">الْمَغْرِب</th>
+                <th className="px-2 py-2.5 font-bold">الْعِشَاء</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-[var(--border-subtle)]">

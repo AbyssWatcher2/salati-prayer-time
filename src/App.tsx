@@ -27,14 +27,14 @@ export function App() {
         {app.notifPerm === 'default' && activeTab === 'today' && (
           <div className="surface-elevated flex items-center justify-between gap-3 rounded-2xl border border-emerald-500/35 px-3.5 py-2.5 text-xs">
             <span className="font-semibold text-[var(--text-primary)]">
-              فعل إشعارات الموبايل عشان التذكير يوصلك كل ربع ساعة.
+              فَعِّلْ إِشْعَارَاتِ الْهَاتِفِ لِيَصِلَكَ التَّذْكِيرُ كُلَّ رُبْعِ سَاعَةٍ.
             </span>
             <button
               type="button"
               onClick={() => void app.handleRequestNotifications()}
               className="shrink-0 rounded-xl bg-emerald-500 px-3 py-1.5 font-black text-slate-950 transition active:scale-95"
             >
-              تفعيل
+              تَفْعِيل
             </button>
           </div>
         )}

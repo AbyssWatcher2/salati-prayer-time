@@ -256,20 +256,20 @@ export function usePrayerReminderApp() {
     const title =
       duePrayers.length === 1
         ? duePrayers[0].status === 'overdue'
-          ? `تذكير: صلاة ${duePrayers[0].arabicName} فات وقتها — قوم صليها`
-          : `حان الآن موعد صلاة ${duePrayers[0].arabicName}`
-        : `تذكير بالصلاة: ${names}`;
+          ? `تَذْكِيرٌ: صَلَاةُ ${duePrayers[0].arabicName} فَاتَ وَقْتُهَا — قُمْ وَصَلِّهَا`
+          : `حَانَ الْآنَ مَوْعِدُ صَلَاةِ ${duePrayers[0].arabicName}`
+        : `تَذْكِيرٌ بِالصَّلَاةِ: ${names}`;
 
     const details = duePrayers
       .map((p) => {
         const elapsed = formatDurationArabic(tickNow - p.startTime);
         return p.status === 'overdue'
-          ? `${p.arabicName} (فات وقتها، مر ${elapsed})`
-          : `${p.arabicName} (بدأ من ${elapsed})`;
+          ? `${p.arabicName} (فَاتَ وَقْتُهَا، مَرَّ ${elapsed})`
+          : `${p.arabicName} (دَخَلَ مُنْذُ ${elapsed})`;
       })
       .join(' • ');
 
-    const body = `${details} — اضغط «صليت ✓» لإيقاف التذكير كل ${currentSettings.reminderIntervalMinutes} د.`;
+    const body = `${details} — اضْغَطْ «صَلَّيْتُ ✓» لِإِيقَافِ التَّذْكِيرِ كُلَّ ${currentSettings.reminderIntervalMinutes} د.`;
 
     // Record firing first so concurrent ticks cannot double-fire
     setLogsByDate((prev) => {
@@ -470,16 +470,16 @@ export function usePrayerReminderApp() {
         : [nextPrayer.id];
 
     const notifSent = await sendPrayerNotification({
-      title: 'تجربة تذكير الصلاة — صلاتي',
-      body: `هكذا سيظهر التذكير كل ${settings.reminderIntervalMinutes} دقيقة حتى تضغط «صليت ✓»`,
+      title: 'تَجْرِبَةُ تَذْكِيرِ الصَّلَاةِ — صَلَاتِي',
+      body: `هَكَذَا سَيَظْهَرُ التَّذْكِيرُ كُلَّ ${settings.reminderIntervalMinutes} دَقِيقَةً حَتَّى تَضْغَطَ «صَلَّيْتُ ✓»`,
       dateKey: todayKey,
       prayerIds: testIds,
       overdue: false,
     });
 
     setActiveAlert({
-      title: 'تجربة التذكير شغالة بنجاح ✓',
-      body: `هيفكرك التطبيق كل ${settings.reminderIntervalMinutes} دقيقة عند دخول وقت الصلاة وحتى لو فات وقتها لحد ما تضغط «صليت ✓».`,
+      title: 'تَجْرِبَةُ التَّذْكِيرِ تَعْمَلُ بِنَجَاحٍ ✓',
+      body: `سَيُذَكِّرُكَ التَّطْبِيقُ كُلَّ ${settings.reminderIntervalMinutes} دَقِيقَةً عِنْدَ دُخُولِ وَقْتِ الصَّلَاةِ وَحَتَّى بَعْدَ انْتِهَاءِ وَقْتِهَا إِلَى أَنْ تَضْغَطَ «صَلَّيْتُ ✓».`,
       prayerIds: testIds,
       hasOverdue: false,
       isTest: true,
@@ -487,10 +487,10 @@ export function usePrayerReminderApp() {
 
     setTestBannerMsg(
       notifSent
-        ? 'تم إرسال إشعار تجريبي + تشغيل الصوت والاهتزاز.'
+        ? 'تَمَّ إِرْسَالُ إِشْعَارٍ تَجْرِيبِيٍّ + تَشْغِيلُ الصَّوْتِ وَالِاهْتِزَازِ.'
         : perm === 'granted'
-          ? 'تم تشغيل الصوت والاهتزاز (تأكد من فتح التطبيق عبر HTTPS لإشعارات Chrome الكاملة).'
-          : 'تم تشغيل الصوت والاهتزاز! فعل إذن الإشعارات ليصلك التنبيه في الخلفية.',
+          ? 'تَمَّ تَشْغِيلُ الصَّوْتِ وَالِاهْتِزَازِ (تَأَكَّدْ مِنْ فَتْحِ التَّطْبِيقِ عَبْرَ HTTPS لِلْإِشْعَارَاتِ الْكَامِلَةِ).'
+          : 'تَمَّ تَشْغِيلُ الصَّوْتِ وَالِاهْتِزَازِ! فَعِّلْ إِذْنَ الْإِشْعَارَاتِ لِيَصِلَكَ التَّنْبِيهُ فِي الْخَلْفِيَّةِ.',
     );
     window.setTimeout(() => setTestBannerMsg(null), 5000);
   }, [
@@ -520,7 +520,7 @@ export function usePrayerReminderApp() {
         setGpsStatus('تم تحديث المواقيت حسب موقعك الحالي بنجاح.');
       },
       () => {
-        setGpsStatus('تعذر الوصول للموقع — يمكنك اختيار محافظتك من القائمة.');
+        setGpsStatus('تَعَذَّرَ الْوُصُولُ لِلْمَوْقِعِ — يُمْكِنُكَ اخْتِيَارُ مُحَافَظَتِكَ مِنَ الْقَائِمَةِ.');
       },
       { enableHighAccuracy: false, timeout: 10000 },
     );

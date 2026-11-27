@@ -43,6 +43,10 @@ body {
   padding-bottom: env(safe-area-inset-bottom);
 }
 
+button {
+  touch-action: manipulation;
+}
+
 .tabular-nums {
   font-variant-numeric: tabular-nums;
   font-feature-settings: "tnum" 1;

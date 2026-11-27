@@ -71,13 +71,13 @@ export function HeaderCard({
           <div>
             <div className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-2.5 py-0.5 text-[11px] font-semibold text-emerald-200">
               <Sparkles className="h-3 w-3 text-amber-400" />
-              <span>الصلاة القادمة {nextPrayer.isTomorrow ? '(غدا)' : ''}</span>
+              <span>الصَّلَاةُ الْقَادِمَةُ {nextPrayer.isTomorrow ? '(غَدًا)' : ''}</span>
             </div>
             <h1 className="mt-2 text-2xl font-black tracking-tight text-white">
-              صلاة {nextPrayer.arabicName}
+              صَلَاةُ {nextPrayer.arabicName}
             </h1>
             <p className="mt-0.5 text-sm text-emerald-100/80">
-              موعدها:{' '}
+              مَوْعِدُهَا:{' '}
               <span className="tabular-nums font-bold text-amber-300">
                 {formatTimeAr(nextPrayer.startTime)}
               </span>
@@ -86,7 +86,7 @@ export function HeaderCard({
 
           <div className="text-left">
             <span className="block text-[11px] font-medium text-emerald-200/80">
-              فاضل عليها
+              فَاضِلٌ عَلَيْهَا
             </span>
             <div className="tabular-nums mt-0.5 text-3xl font-black tracking-tight text-emerald-300">
               {formatCountdownHMS(nextPrayer.remainingMs)}
@@ -108,12 +108,12 @@ export function HeaderCard({
         <div className="relative mt-4 flex items-center justify-between gap-2 border-t border-white/10 pt-3 text-xs">
           <div className="flex items-center gap-3">
             <span className="font-bold text-emerald-200">
-              إنجاز اليوم:{' '}
-              <span className="tabular-nums text-white">{prayedCountToday} / 5</span> صلوات
+              إِنْجَازُ الْيَوْمِ:{' '}
+              <span className="tabular-nums text-white">{prayedCountToday} / 5</span> صَلَوَاتٍ
             </span>
             <span className="inline-flex items-center gap-1 rounded-full bg-amber-500/20 px-2 py-0.5 font-bold text-amber-300">
               <Flame className="h-3.5 w-3.5" />
-              <span className="tabular-nums">{streak}</span> يوم التزام
+              <span className="tabular-nums">{streak}</span> يَوْمَ الْتِزَامٍ
             </span>
           </div>
 
@@ -122,7 +122,7 @@ export function HeaderCard({
             onClick={onOpenSchedule}
             className="rounded-lg bg-white/10 px-2.5 py-1 text-[11px] font-bold text-emerald-200 transition active:scale-95 hover:bg-white/20"
           >
-            جدول مصر كامل
+            جَدْوَلُ مِصْرَ كَامِلٌ
           </button>
         </div>
       </div>
