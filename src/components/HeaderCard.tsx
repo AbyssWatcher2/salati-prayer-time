@@ -71,7 +71,7 @@ export function HeaderCard({
           <div>
             <div className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-2.5 py-0.5 text-[11px] font-semibold text-emerald-200">
               <Sparkles className="h-3 w-3 text-amber-400" />
-              <span>الصلاة القادمة {nextPrayer.isTomorrow ? '(غداً)' : ''}</span>
+              <span>الصلاة القادمة {nextPrayer.isTomorrow ? '(غدا)' : ''}</span>
             </div>
             <h1 className="mt-2 text-2xl font-black tracking-tight text-white">
               صلاة {nextPrayer.arabicName}

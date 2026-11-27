@@ -76,7 +76,7 @@ export function ActiveReminderBanner({
         <div className="min-w-0 flex-1">
           <div className="flex items-center justify-between gap-2">
             <h2 className="text-base font-black">
-              {hasOverdue ? 'صلوات في انتظارك — قم صلّي الآن' : 'حان وقت الصلاة'}
+              {hasOverdue ? 'صلوات في انتظارك — قوم صلي دلوقتي' : 'حان وقت الصلاة'}
             </h2>
             <span className="rounded-full bg-white/10 px-2 py-0.5 text-[11px] font-bold">
               تذكير كل {intervalMinutes} د
@@ -84,7 +84,7 @@ export function ActiveReminderBanner({
           </div>
 
           <p className="mt-1 text-xs opacity-90">
-            التذكير سيستمر تلقائياً كل ربع ساعة حتى بعد انتهاء وقت الصلاة لحد ما تضغط «صليت ✓».
+            التذكير هيستمر تلقائيا كل ربع ساعة حتى بعد انتهاء وقت الصلاة لحد ما تضغط «صليت ✓».
           </p>
 
           <div className="mt-3 space-y-2">
@@ -110,7 +110,7 @@ export function ActiveReminderBanner({
                       </span>
                     </div>
                     <p className="mt-0.5 text-[11px] opacity-80">
-                      أذّنت {formatTimeAr(p.startTime)} • منذ {elapsed}
+                      أذنت {formatTimeAr(p.startTime)} • منذ {elapsed}
                     </p>
                   </div>
 
@@ -134,7 +134,7 @@ export function ActiveReminderBanner({
               className="inline-flex min-h-[46px] items-center justify-center gap-1.5 rounded-2xl bg-emerald-500 px-3 py-2.5 text-sm font-black text-slate-950 shadow transition active:scale-[0.98]"
             >
               <CheckCircle2 className="h-5 w-5" />
-              {pendingPrayers.length > 1 ? 'الحمد لله، صليتهم كلهم ✓' : 'الحمد لله، صليت ✓'}
+              {pendingPrayers.length > 1 ? 'الحمدلله، صليتهم كلهم ✓' : 'الحمدلله، صليت ✓'}
             </button>
 
             <button
@@ -143,7 +143,7 @@ export function ActiveReminderBanner({
               className="inline-flex min-h-[46px] items-center justify-center gap-1.5 rounded-2xl border border-white/20 bg-white/10 px-3 py-2.5 text-xs font-bold text-white transition active:scale-[0.98]"
             >
               <Clock className="h-4 w-4" />
-              فكّرني بعد {intervalMinutes} دقيقة
+              فكرني بعد {intervalMinutes} دقيقة
             </button>
           </div>
         </div>

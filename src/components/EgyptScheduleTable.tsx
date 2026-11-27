@@ -167,7 +167,7 @@ export function EgyptScheduleTable({
                   statusBadge = diff > 0 ? 'شروق' : 'انتهى';
                   badgeClass = 'bg-amber-500/10 text-amber-400';
                 } else if (row.status === 'prayed') {
-                  statusBadge = 'تمّت ✓';
+                  statusBadge = 'تمت ✓';
                   badgeClass = 'bg-emerald-500/20 text-emerald-400';
                 } else if (row.status === 'due') {
                   statusBadge = 'وقتها الآن';

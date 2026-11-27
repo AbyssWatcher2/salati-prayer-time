@@ -27,7 +27,7 @@ export function App() {
         {app.notifPerm === 'default' && activeTab === 'today' && (
           <div className="surface-elevated flex items-center justify-between gap-3 rounded-2xl border border-emerald-500/35 px-3.5 py-2.5 text-xs">
             <span className="font-semibold text-[var(--text-primary)]">
-              فعّل إشعارات الموبايل عشان التذكير يوصلك كل ربع ساعة.
+              فعل إشعارات الموبايل عشان التذكير يوصلك كل ربع ساعة.
             </span>
             <button
               type="button"

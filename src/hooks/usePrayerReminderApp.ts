@@ -256,7 +256,7 @@ export function usePrayerReminderApp() {
     const title =
       duePrayers.length === 1
         ? duePrayers[0].status === 'overdue'
-          ? `تذكير: صلاة ${duePrayers[0].arabicName} فات وقتها — قم صلّيها`
+          ? `تذكير: صلاة ${duePrayers[0].arabicName} فات وقتها — قوم صليها`
           : `حان الآن موعد صلاة ${duePrayers[0].arabicName}`
         : `تذكير بالصلاة: ${names}`;
 
@@ -478,8 +478,8 @@ export function usePrayerReminderApp() {
     });
 
     setActiveAlert({
-      title: 'تجربة التذكير شغّالة بنجاح ✓',
-      body: `سيذكّرك التطبيق كل ${settings.reminderIntervalMinutes} دقيقة عند دخول وقت الصلاة وحتى لو فات وقتها لحد ما تضغط «صليت ✓».`,
+      title: 'تجربة التذكير شغالة بنجاح ✓',
+      body: `هيفكرك التطبيق كل ${settings.reminderIntervalMinutes} دقيقة عند دخول وقت الصلاة وحتى لو فات وقتها لحد ما تضغط «صليت ✓».`,
       prayerIds: testIds,
       hasOverdue: false,
       isTest: true,
@@ -490,7 +490,7 @@ export function usePrayerReminderApp() {
         ? 'تم إرسال إشعار تجريبي + تشغيل الصوت والاهتزاز.'
         : perm === 'granted'
           ? 'تم تشغيل الصوت والاهتزاز (تأكد من فتح التطبيق عبر HTTPS لإشعارات Chrome الكاملة).'
-          : 'تم تشغيل الصوت والاهتزاز! فعّل إذن الإشعارات ليصلك التنبيه في الخلفية.',
+          : 'تم تشغيل الصوت والاهتزاز! فعل إذن الإشعارات ليصلك التنبيه في الخلفية.',
     );
     window.setTimeout(() => setTestBannerMsg(null), 5000);
   }, [
@@ -520,7 +520,7 @@ export function usePrayerReminderApp() {
         setGpsStatus('تم تحديث المواقيت حسب موقعك الحالي بنجاح.');
       },
       () => {
-        setGpsStatus('تعذّر الوصول للموقع — يمكنك اختيار محافظتك من القائمة.');
+        setGpsStatus('تعذر الوصول للموقع — يمكنك اختيار محافظتك من القائمة.');
       },
       { enableHighAccuracy: false, timeout: 10000 },
     );

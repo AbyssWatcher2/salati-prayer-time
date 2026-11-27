@@ -86,14 +86,14 @@ export function PrayerChecklist({
                       {isPrayed && (
                         <span className="inline-flex items-center gap-1 rounded-full bg-emerald-500/15 px-2 py-0.5 text-[11px] font-bold text-emerald-400">
                           <Check className="h-3 w-3" />
-                          {record.statusWhenPrayed === 'late' ? 'تمّت (قضاء)' : 'تمّت في وقتها'}
+                          {record.statusWhenPrayed === 'late' ? 'تمت (قضاء)' : 'تمت في وقتها'}
                         </span>
                       )}
 
                       {isDue && (
                         <span className="inline-flex items-center gap-1 rounded-full bg-emerald-500/20 px-2 py-0.5 text-[11px] font-bold text-emerald-300">
                           <Bell className="h-3 w-3" />
-                          حان وقتها — لم تُصلَّ
+                          حان وقتها — لسه ما صليتش
                         </span>
                       )}
 
@@ -167,7 +167,7 @@ export function PrayerChecklist({
                     ) : (
                       <>
                         <span className="h-5 w-5 rounded-full border-2 border-current opacity-80" />
-                        <span>علّم صليت</span>
+                        <span>علم صليت</span>
                       </>
                     )}
                   </button>
@@ -203,7 +203,7 @@ export function PrayerChecklist({
         <div className="surface-elevated rounded-2xl border border-amber-500/30 p-3.5">
           <div className="flex items-center gap-2 text-xs font-extrabold text-amber-400">
             <RotateCcw className="h-4 w-4" />
-            <span>صلوات من أمس لم تُعلَّم في القائمة</span>
+            <span>صلوات من أمس لسه ما اتعلمش عليها</span>
           </div>
           <div className="mt-2.5 space-y-2">
             {yesterdayUnprayed.map((p) => (

@@ -68,7 +68,7 @@ export function SettingsSheet({
             }`}
           >
             {notifPerm === 'granted'
-              ? 'الإشعارات مفعّلة ✓'
+              ? 'الإشعارات مفعلة ✓'
               : notifPerm === 'denied'
                 ? 'الإشعارات مرفوضة'
                 : notifPerm === 'unsupported'
@@ -95,7 +95,7 @@ export function SettingsSheet({
             className="inline-flex min-h-[46px] items-center justify-center gap-2 rounded-xl border border-emerald-500/40 bg-emerald-500/15 px-4 py-2.5 text-xs font-black text-emerald-300 transition active:scale-95"
           >
             <Volume2 className="h-4 w-4" />
-            جرّب التذكير الآن
+            جرب التذكير الآن
           </button>
         </div>
 
@@ -136,7 +136,7 @@ export function SettingsSheet({
                 استمرار التذكير حتى بعد انتهاء وقت الصلاة
               </span>
               <span className="text-[11px] text-[var(--text-secondary)]">
-                يفضّل يفكرك كل {settings.reminderIntervalMinutes} د لحد ما تضغط «صليت ✓»
+                هيفضل يفكرك كل {settings.reminderIntervalMinutes} د لحد ما تضغط «صليت ✓»
               </span>
             </div>
             <input
@@ -149,7 +149,7 @@ export function SettingsSheet({
 
           <label className="flex items-center justify-between gap-3 rounded-xl bg-[var(--bg-input)] p-3 text-xs">
             <div>
-              <span className="block font-extrabold">إظهار صلوات أمس غير المُعلَّمة</span>
+              <span className="block font-extrabold">إظهار صلوات أمس اللي ما اتعلمش عليها</span>
               <span className="text-[11px] text-[var(--text-secondary)]">
                 تظهر في قائمة اليوم لتعليمها قضاء أو تخطيها
               </span>
@@ -237,7 +237,7 @@ export function SettingsSheet({
           <div>
             <span className="block font-extrabold">مذهب صلاة العصر</span>
             <span className="text-[11px] text-[var(--text-secondary)]">
-              مصر تستخدم الشافعي/الجمهور رسمياً
+              مصر تستخدم الشافعي/الجمهور رسميا
             </span>
           </div>
           <div className="inline-flex rounded-lg bg-black/20 p-1 text-[11px] font-bold">
@@ -299,7 +299,7 @@ export function SettingsSheet({
         <div className="pt-1">
           <div className="flex items-center justify-between">
             <span className="text-xs font-bold text-[var(--text-secondary)]">
-              ضبط يدوي بالدقائق (لو حابب تعدّل عن المسجد)
+              ضبط يدوي بالدقائق (لو حابب تعدل عن المسجد)
             </span>
             <button
               type="button"
@@ -367,7 +367,7 @@ export function SettingsSheet({
             .
           </li>
           <li>
-            3. افتح شاشة التطبيقات المفتوحة (Recent Apps) واضغط مطوّلاً على التطبيق واختر رمز{' '}
+            3. افتح شاشة التطبيقات المفتوحة (Recent Apps) واضغط مطولا على التطبيق واختر رمز{' '}
             <strong className="text-[var(--text-primary)]">القفل 🔒</strong> حتى لا يغلقه النظام.
           </li>
           <li className="flex items-start gap-1.5 pt-1 text-[11px] text-amber-400/90">
