@@ -68,12 +68,12 @@ export function SettingsSheet({
             }`}
           >
             {notifPerm === 'granted'
-              ? 'الْإِشْعَارَاتُ مُفَعَّلَةٌ ✓'
+              ? 'الإشعارات مفعلة ✓'
               : notifPerm === 'denied'
-                ? 'الْإِشْعَارَاتُ مَرْفُوضَةٌ'
+                ? 'الإشعارات مرفوضة'
                 : notifPerm === 'unsupported'
-                  ? 'غَيْرُ مَدْعُومَةٍ هُنَا'
-                  : 'تَحْتَاجُ تَفْعِيلًا'}
+                  ? 'غير مدعومة هنا'
+                  : 'تحتاج تفعيل'}
           </span>
         </div>
 
@@ -85,7 +85,7 @@ export function SettingsSheet({
               className="inline-flex min-h-[46px] items-center justify-center gap-2 rounded-xl bg-emerald-500 px-4 py-2.5 text-xs font-black text-slate-950 transition active:scale-95"
             >
               <Bell className="h-4 w-4" />
-              تَفْعِيلُ إِشْعَارَاتِ الْهَاتِفِ
+              تفعيل إشعارات الهاتف
             </button>
           )}
 
@@ -95,7 +95,7 @@ export function SettingsSheet({
             className="inline-flex min-h-[46px] items-center justify-center gap-2 rounded-xl border border-emerald-500/40 bg-emerald-500/15 px-4 py-2.5 text-xs font-black text-emerald-300 transition active:scale-95"
           >
             <Volume2 className="h-4 w-4" />
-            جَرِّبِ التَّذْكِيرَ الْآنَ
+            جرب التذكير الآن
           </button>
         </div>
 
@@ -133,10 +133,10 @@ export function SettingsSheet({
           <label className="flex items-center justify-between gap-3 rounded-xl bg-[var(--bg-input)] p-3 text-xs">
             <div>
               <span className="block font-extrabold">
-                اسْتِمْرَارُ التَّذْكِيرِ حَتَّى بَعْدَ انْتِهَاءِ وَقْتِ الصَّلَاةِ
+                استمرار التذكير حتى بعد انتهاء وقت الصلاة
               </span>
               <span className="text-[11px] text-[var(--text-secondary)]">
-                يَسْتَمِرُّ فِي تَذْكِيرِكَ كُلَّ {settings.reminderIntervalMinutes} د حَتَّى تَضْغَطَ «صَلَّيْتُ ✓»
+                هيفضل يفكرك كل {settings.reminderIntervalMinutes} د لحد ما تضغط «صليت ✓»
               </span>
             </div>
             <input
@@ -149,9 +149,9 @@ export function SettingsSheet({
 
           <label className="flex items-center justify-between gap-3 rounded-xl bg-[var(--bg-input)] p-3 text-xs">
             <div>
-              <span className="block font-extrabold">إِظْهَارُ صَلَوَاتِ أَمْسِ غَيْرِ الْمُعَلَّمَةِ</span>
+              <span className="block font-extrabold">إظهار صلوات أمس غير المعلمة</span>
               <span className="text-[11px] text-[var(--text-secondary)]">
-                تَظْهَرُ فِي قَائِمَةِ الْيَوْمِ لِتَعْلِيمِهَا قَضَاءً أَوْ تَخَطِّيهَا
+                تظهر في قائمة اليوم لتعليمها قضاء أو تخطيها
               </span>
             </div>
             <input
@@ -235,9 +235,9 @@ export function SettingsSheet({
         {/* Asr Madhab */}
         <div className="flex items-center justify-between gap-2 rounded-xl bg-[var(--bg-input)] p-3 text-xs">
           <div>
-            <span className="block font-extrabold">مَذْهَبُ صَلَاةِ الْعَصْرِ</span>
+            <span className="block font-extrabold">مذهب صلاة الْعَصْر</span>
             <span className="text-[11px] text-[var(--text-secondary)]">
-              مِصْرُ تَسْتَخْدِمُ مَذْهَبَ الْجُمْهُورِ (الشَّافِعِيَّ) رَسْمِيًّا
+              مصر تستخدم مذهب الجمهور (الشافعي) رسميا
             </span>
           </div>
           <div className="inline-flex rounded-lg bg-black/20 p-1 text-[11px] font-bold">
@@ -269,9 +269,9 @@ export function SettingsSheet({
         {/* Theme */}
         <div className="flex items-center justify-between gap-2 rounded-xl bg-[var(--bg-input)] p-3 text-xs">
           <div>
-            <span className="block font-extrabold">الْمَظْهَرُ (Theme)</span>
+            <span className="block font-extrabold">المظهر (Theme)</span>
             <span className="text-[11px] text-[var(--text-secondary)]">
-              الْوَضْعُ الدَّاكِنُ مُرِيحٌ لِلْعَيْنِ وَيُوَفِّرُ طَاقَةَ شَاشَاتِ OLED/AMOLED
+              الوضع الداكن مريح للعين ويوفر طاقة شاشات OLED/AMOLED
             </span>
           </div>
           <button
@@ -299,7 +299,7 @@ export function SettingsSheet({
         <div className="pt-1">
           <div className="flex items-center justify-between">
             <span className="text-xs font-bold text-[var(--text-secondary)]">
-              ضَبْطٌ يَدَوِيٌّ بِالدَّقَائِقِ (لِلتَّطَابُقِ مَعَ الْمَسْجِدِ)
+              ضبط يدوي بالدقائق (للتطابق مع المسجد)
             </span>
             <button
               type="button"
@@ -340,7 +340,7 @@ export function SettingsSheet({
       <div className="surface-card rounded-2xl border border-amber-500/30 p-4 space-y-3">
         <div className="flex items-center gap-2 text-amber-400">
           <Smartphone className="h-5 w-5" />
-          <h2 className="text-sm font-black">تَثْبِيتُ التَّطْبِيقِ عَلَى الْهَاتِفِ (أَنْدْرُوِيد وَآيْفُون)</h2>
+          <h2 className="text-sm font-black">تثبيت التطبيق على الهاتف (أندرويد وآيفون)</h2>
         </div>
 
         {canInstallPwa && (
@@ -350,42 +350,42 @@ export function SettingsSheet({
             className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-amber-500 px-4 py-2.5 text-xs font-black text-slate-950"
           >
             <Download className="h-4 w-4" />
-            تَثْبِيتُ «صَلَاتِي» كَتَطْبِيقٍ عَلَى الشَّاشَةِ الرَّئِيسِيَّةِ
+            تثبيت «صلاتي» كتطبيق على الشاشة الرئيسية
           </button>
         )}
 
         <div className="space-y-2.5 text-xs leading-relaxed text-[var(--text-secondary)]">
           <div className="rounded-xl bg-[var(--bg-input)] p-3 space-y-1">
-            <p className="font-extrabold text-emerald-400">لِهَوَاتِفِ أَنْدْرُوِيد (Android):</p>
+            <p className="font-extrabold text-emerald-400">لهواتف أندرويد (Android):</p>
             <p>
-              ١. افْتَحِ الرَّابِطَ فِي <strong className="text-[var(--text-primary)]">Chrome</strong>{' '}
-              وَاضْغَطْ <strong className="text-[var(--text-primary)]">⋮ ← إِضَافَةٌ إِلَى الشَّاشَةِ الرَّئِيسِيَّةِ</strong>.
+              ١. افتح الرابط في <strong className="text-[var(--text-primary)]">Chrome</strong> واضغط{' '}
+              <strong className="text-[var(--text-primary)]">⋮ ← إضافة إلى الشاشة الرئيسية</strong>.
             </p>
             <p>
-              ٢. فَعِّلِ الْإِشْعَارَاتِ، وَفِي إِعْدَادَاتِ الْبَطَّارِيَّةِ اجْعَلِ التَّطْبِيقَ أَوْ{' '}
+              ٢. فعل الإشعارات، وفي إعدادات البطارية اجعل التطبيق أو{' '}
               <strong className="text-[var(--text-primary)]">Chrome</strong>{' '}
-              <strong className="text-[var(--text-primary)]">بِلَا قُيُودٍ</strong> لِضَمَانِ اسْتِمْرَارِ التَّذْكِيرِ فِي الْخَلْفِيَّةِ.
+              <strong className="text-[var(--text-primary)]">بلا قيود</strong> لضمان استمرار التذكير في الخلفية.
             </p>
           </div>
 
           <div className="rounded-xl bg-[var(--bg-input)] p-3 space-y-1">
-            <p className="font-extrabold text-amber-400">لِهَوَاتِفِ آيْفُون (iPhone / iOS):</p>
+            <p className="font-extrabold text-amber-400">لهواتف آيفون (iPhone / iOS):</p>
             <p>
-              ١. افْتَحِ الرَّابِطَ فِي مُتَصَفِّحِ <strong className="text-[var(--text-primary)]">Safari</strong>{' '}
-              وَاضْغَطْ زِرَّ الْمُشَارَكَةِ <strong className="text-[var(--text-primary)]">(Share)</strong> ثُمَّ{' '}
-              <strong className="text-[var(--text-primary)]">إِضَافَةٌ إِلَى الشَّاشَةِ الرَّئِيسِيَّةِ (Add to Home Screen)</strong>.
+              ١. افتح الرابط في متصفح <strong className="text-[var(--text-primary)]">Safari</strong>{' '}
+              واضغط زر المشاركة <strong className="text-[var(--text-primary)]">(Share)</strong> ثم{' '}
+              <strong className="text-[var(--text-primary)]">إضافة إلى الشاشة الرئيسية (Add to Home Screen)</strong>.
             </p>
             <p>
-              ٢. افْتَحِ التَّطْبِيقَ مِنْ أَيْقُونَتِهِ عَلَى الشَّاشَةِ الرَّئِيسِيَّةِ ثُمَّ اضْغَطْ{' '}
-              <strong className="text-[var(--text-primary)]">«تَفْعِيلُ إِشْعَارَاتِ الْهَاتِفِ»</strong>{' '}
-              (تَعْمَلُ إِشْعَارَاتُ الْوِيبِ عَلَى iOS 16.4 فَأَحْدَثَ بَعْدَ التَّثْبِيتِ).
+              ٢. افتح التطبيق من أيقونته على الشاشة الرئيسية ثم اضغط{' '}
+              <strong className="text-[var(--text-primary)]">«تفعيل إشعارات الهاتف»</strong>{' '}
+              (تعمل إشعارات الويب على iOS 16.4 فأحدث بعد التثبيت).
             </p>
           </div>
 
           <p className="flex items-start gap-1.5 pt-0.5 text-[11px] text-amber-400/90">
             <ShieldAlert className="mt-0.5 h-3.5 w-3.5 shrink-0" />
             <span>
-              إِشْعَارَاتُ الْهَاتِفِ تَتَطَلَّبُ فَتْحَ التَّطْبِيقِ عَبْرَ رَابِطِ <strong>HTTPS</strong>.
+              إشعارات الهاتف تتطلب فتح التطبيق عبر رابط <strong>HTTPS</strong>.
             </span>
           </p>
         </div>

@@ -38,9 +38,9 @@ export function PrayerChecklist({
     <section className="space-y-3">
       <div className="flex items-center justify-between px-1">
         <div>
-          <h2 className="text-base font-black">قَائِمَةُ صَلَوَاتِ الْيَوْمِ (Checklist)</h2>
+          <h2 className="text-base font-black">قائمة صلوات اليوم (Checklist)</h2>
           <p className="text-xs text-[var(--text-secondary)]">
-            اضْغَطْ «صَلَّيْتُ» لِإِيقَافِ التَّذْكِيرِ كُلَّ {settings.reminderIntervalMinutes} دَقِيقَةً عَنِ الصَّلَاةِ
+            اضغط «صليت» لإيقاف التذكير كل {settings.reminderIntervalMinutes} دقيقة عن الصلاة
           </p>
         </div>
       </div>
@@ -86,39 +86,39 @@ export function PrayerChecklist({
                       {isPrayed && (
                         <span className="inline-flex items-center gap-1 rounded-full bg-emerald-500/15 px-2 py-0.5 text-[11px] font-bold text-emerald-400">
                           <Check className="h-3 w-3" />
-                          {record.statusWhenPrayed === 'late' ? 'تَمَّتْ (قَضَاءً)' : 'تَمَّتْ فِي وَقْتِهَا'}
+                          {record.statusWhenPrayed === 'late' ? 'تمت (قضاء)' : 'تمت في وقتها'}
                         </span>
                       )}
 
                       {isDue && (
                         <span className="inline-flex items-center gap-1 rounded-full bg-emerald-500/20 px-2 py-0.5 text-[11px] font-bold text-emerald-300">
                           <Bell className="h-3 w-3" />
-                          حَانَ وَقْتُهَا — لَمْ تُصَلَّ بَعْدُ
+                          حان وقتها — لسه ما صليتش
                         </span>
                       )}
 
                       {isOverdue && (
                         <span className="inline-flex items-center gap-1 rounded-full bg-amber-500/20 px-2 py-0.5 text-[11px] font-bold text-amber-400">
-                          فَاتَ وَقْتُهَا — مُسْتَمِرٌّ التَّذْكِيرُ
+                          فات وقتها — مستمر التذكير
                         </span>
                       )}
 
                       {isUpcoming && (
                         <span className="inline-flex items-center gap-1 rounded-full bg-slate-500/15 px-2 py-0.5 text-[11px] font-semibold text-[var(--text-secondary)]">
-                          فَاضِلٌ {formatDurationArabic(prayer.startTime - now)}
+                          فاضل {formatDurationArabic(prayer.startTime - now)}
                         </span>
                       )}
                     </div>
 
                     <div className="mt-1.5 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-[var(--text-secondary)]">
                       <span>
-                        الْأَذَانُ:{' '}
+                        الأذان:{' '}
                         <strong className="tabular-nums text-[var(--text-primary)]">
                           {formatTimeAr(prayer.startTime)}
                         </strong>
                       </span>
                       <span>
-                        يَنْتَهِي:{' '}
+                        ينتهي:{' '}
                         <span className="tabular-nums">{formatTimeAr(prayer.endTime)}</span>
                       </span>
                     </div>
@@ -126,22 +126,22 @@ export function PrayerChecklist({
                     {/* Dynamic sub-line */}
                     {isPrayed && record.prayedAt ? (
                       <p className="mt-1 text-[11px] font-medium text-emerald-400/90">
-                        صَلَّيْتُهَا السَّاعَةَ <span className="tabular-nums">{formatTimeAr(record.prayedAt)}</span> • التَّذْكِيرُ مُتَوَقِّفٌ
+                        صليتها الساعة <span className="tabular-nums">{formatTimeAr(record.prayedAt)}</span> • التذكير متوقف
                       </p>
                     ) : (isDue || isOverdue) && nextReminderRemainingMs !== null ? (
                       <p className="mt-1 flex items-center gap-1 text-[11px] font-semibold text-amber-400">
                         <Clock className="h-3 w-3 shrink-0" />
                         <span>
-                          التَّذْكِيرُ الْقَادِمُ بَعْدَ{' '}
+                          التذكير الجاي بعد{' '}
                           <span className="tabular-nums font-extrabold">
                             {formatShortMMSS(nextReminderRemainingMs)}
                           </span>
-                          {isOverdue && ` • فَاتَتْ مُنْذُ ${formatDurationArabic(now - prayer.endTime)}`}
+                          {isOverdue && ` • فاتت منذ ${formatDurationArabic(now - prayer.endTime)}`}
                         </span>
                       </p>
                     ) : isDue ? (
                       <p className="mt-1 text-[11px] text-emerald-400">
-                        مُتَبَقٍّ عَلَى خُرُوجِ الْوَقْتِ: {formatDurationArabic(prayer.endTime - now)}
+                        متبقي على خروج الوقت: {formatDurationArabic(prayer.endTime - now)}
                       </p>
                     ) : null}
                   </div>
@@ -162,12 +162,12 @@ export function PrayerChecklist({
                     {isPrayed ? (
                       <>
                         <CheckCircle2 className="h-5 w-5 text-emerald-400" />
-                        <span>صَلَّيْتُ ✓</span>
+                        <span>صليت ✓</span>
                       </>
                     ) : (
                       <>
                         <span className="h-5 w-5 rounded-full border-2 border-current opacity-80" />
-                        <span>عَلِّمْ: صَلَّيْتُ</span>
+                        <span>علم صليت</span>
                       </>
                     )}
                   </button>
@@ -179,7 +179,7 @@ export function PrayerChecklist({
                 <div className="flex items-center justify-between rounded-xl border border-dashed border-[var(--border-subtle)] px-3.5 py-2 text-xs text-[var(--text-secondary)]">
                   <div className="flex items-center gap-2">
                     <Sun className="h-4 w-4 text-amber-400" />
-                    <span className="font-semibold">الشُّرُوقُ (نِهَايَةُ وَقْتِ الْفَجْرِ)</span>
+                    <span className="font-semibold">الشُّرُوق (نهاية وقت الْفَجْر)</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <span className="tabular-nums font-bold text-[var(--text-primary)]">
@@ -187,7 +187,7 @@ export function PrayerChecklist({
                     </span>
                     {now < schedule.sunrise && (
                       <span className="text-[11px] text-amber-400">
-                        فَاضِلٌ {formatDurationArabic(schedule.sunrise - now)}
+                        فاضل {formatDurationArabic(schedule.sunrise - now)}
                       </span>
                     )}
                   </div>
@@ -203,7 +203,7 @@ export function PrayerChecklist({
         <div className="surface-elevated rounded-2xl border border-amber-500/30 p-3.5">
           <div className="flex items-center gap-2 text-xs font-extrabold text-amber-400">
             <RotateCcw className="h-4 w-4" />
-            <span>صَلَوَاتٌ مِنْ أَمْسِ لَمْ تُعَلَّمْ فِي الْقَائِمَةِ</span>
+            <span>صلوات من أمس لسه ما اتعلمش عليها</span>
           </div>
           <div className="mt-2.5 space-y-2">
             {yesterdayUnprayed.map((p) => (
@@ -211,14 +211,14 @@ export function PrayerChecklist({
                 key={p.id}
                 className="flex items-center justify-between rounded-xl bg-black/20 px-3 py-2 text-xs"
               >
-                <span className="font-bold">صَلَاةُ {p.arabicName} (أَمْسِ)</span>
+                <span className="font-bold">صلاة {p.arabicName} (أمس)</span>
                 <div className="flex items-center gap-2">
                   <button
                     type="button"
                     onClick={() => onMarkYesterdayPrayer(p.id)}
                     className="rounded-lg bg-emerald-500/20 px-2.5 py-1 font-bold text-emerald-400"
                   >
-                    صَلَّيْتُهَا قَضَاءً ✓
+                    صليتها قضاء ✓
                   </button>
                   <button
                     type="button"

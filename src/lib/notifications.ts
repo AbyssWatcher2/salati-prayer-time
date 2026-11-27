@@ -61,8 +61,8 @@ export async function sendPrayerNotification(payload: PrayerNotificationPayload)
       prayerIds: payload.prayerIds,
     },
     actions: [
-      { action: 'mark-prayed', title: '✓ صَلَّيْتُ' },
-      { action: 'snooze-15', title: 'بَعْدَ رُبْعِ سَاعَةٍ' },
+      { action: 'mark-prayed', title: '✓ صليت' },
+      { action: 'snooze-15', title: 'بعد ربع ساعة' },
     ],
   };
 

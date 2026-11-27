@@ -63,7 +63,7 @@ export function HeaderCard({
       </div>
 
       {/* Next Prayer Hero Card */}
-      <div className="relative overflow-hidden rounded-3xl border border-emerald-500/30 bg-gradient-to-br from-emerald-950/90 via-[#0c1d19] to-[#081210] p-5 text-white shadow-lg">
+      <div className="relative overflow-hidden rounded-3xl border border-emerald-500/30 bg-gradient-to-br from-emerald-950/90 via-[#0c1d19] to-[#081210] p-4 sm:p-5 text-white shadow-lg">
         <div className="pointer-events-none absolute -left-10 -top-10 h-36 w-36 rounded-full bg-emerald-500/10 blur-2xl" />
         <div className="pointer-events-none absolute -bottom-12 -right-8 h-32 w-32 rounded-full bg-amber-500/10 blur-2xl" />
 
@@ -71,31 +71,31 @@ export function HeaderCard({
           <div>
             <div className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-2.5 py-0.5 text-[11px] font-semibold text-emerald-200">
               <Sparkles className="h-3 w-3 text-amber-400" />
-              <span>الصَّلَاةُ الْقَادِمَةُ {nextPrayer.isTomorrow ? '(غَدًا)' : ''}</span>
+              <span>الصلاة القادمة {nextPrayer.isTomorrow ? '(غدا)' : ''}</span>
             </div>
             <h1 className="mt-2 text-2xl font-black tracking-tight text-white">
-              صَلَاةُ {nextPrayer.arabicName}
+              صلاة {nextPrayer.arabicName}
             </h1>
             <p className="mt-0.5 text-sm text-emerald-100/80">
-              مَوْعِدُهَا:{' '}
+              موعدها:{' '}
               <span className="tabular-nums font-bold text-amber-300">
                 {formatTimeAr(nextPrayer.startTime)}
               </span>
             </p>
           </div>
 
-          <div className="text-left">
+          <div className="text-left shrink-0">
             <span className="block text-[11px] font-medium text-emerald-200/80">
-              فَاضِلٌ عَلَيْهَا
+              فاضل عليها
             </span>
-            <div className="tabular-nums mt-0.5 text-3xl font-black tracking-tight text-emerald-300">
+            <div className="tabular-nums mt-0.5 text-2xl sm:text-3xl font-black tracking-tight text-emerald-300">
               {formatCountdownHMS(nextPrayer.remainingMs)}
             </div>
           </div>
         </div>
 
         {/* Progress toward next prayer */}
-        <div className="relative mt-4">
+        <div className="relative mt-3.5">
           <div className="h-1.5 w-full overflow-hidden rounded-full bg-white/10">
             <div
               className="h-full rounded-full bg-gradient-to-l from-amber-400 to-emerald-400 transition-all duration-700"
@@ -105,24 +105,23 @@ export function HeaderCard({
         </div>
 
         {/* Daily progress & streak */}
-        <div className="relative mt-4 flex items-center justify-between gap-2 border-t border-white/10 pt-3 text-xs">
-          <div className="flex items-center gap-3">
-            <span className="font-bold text-emerald-200">
-              إِنْجَازُ الْيَوْمِ:{' '}
-              <span className="tabular-nums text-white">{prayedCountToday} / 5</span> صَلَوَاتٍ
+        <div className="relative mt-3.5 flex items-center justify-between gap-2 border-t border-white/10 pt-3 text-[11px]">
+          <div className="flex items-center gap-2 min-w-0">
+            <span className="whitespace-nowrap font-bold text-emerald-200">
+              اليوم: <span className="tabular-nums text-white">{prayedCountToday}/5</span>
             </span>
-            <span className="inline-flex items-center gap-1 rounded-full bg-amber-500/20 px-2 py-0.5 font-bold text-amber-300">
-              <Flame className="h-3.5 w-3.5" />
-              <span className="tabular-nums">{streak}</span> يَوْمَ الْتِزَامٍ
+            <span className="inline-flex items-center gap-1 whitespace-nowrap rounded-full bg-amber-500/20 px-2 py-0.5 font-bold text-amber-300">
+              <Flame className="h-3 w-3 shrink-0" />
+              <span className="tabular-nums">{streak}</span> يوم التزام
             </span>
           </div>
 
           <button
             type="button"
             onClick={onOpenSchedule}
-            className="rounded-lg bg-white/10 px-2.5 py-1 text-[11px] font-bold text-emerald-200 transition active:scale-95 hover:bg-white/20"
+            className="shrink-0 whitespace-nowrap rounded-lg bg-white/10 px-2.5 py-1 font-bold text-emerald-200 transition active:scale-95 hover:bg-white/20"
           >
-            جَدْوَلُ مِصْرَ كَامِلٌ
+            جدول مصر
           </button>
         </div>
       </div>

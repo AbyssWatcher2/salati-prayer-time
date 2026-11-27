@@ -13,8 +13,9 @@ export function App() {
   const app = usePrayerReminderApp();
 
   return (
-    <div className="min-h-dvh pb-24">
-      <main className="mx-auto max-w-lg space-y-4 px-3.5 pt-4">
+    <div className="app-shell min-h-dvh">
+      <div className="safe-top-bar fixed top-0 left-0 right-0 z-50" aria-hidden="true" />
+      <main className="mx-auto max-w-lg space-y-3.5 px-3.5">
         <HeaderCard
           now={app.now}
           locationLabel={app.locationLabel}
@@ -27,14 +28,14 @@ export function App() {
         {app.notifPerm === 'default' && activeTab === 'today' && (
           <div className="surface-elevated flex items-center justify-between gap-3 rounded-2xl border border-emerald-500/35 px-3.5 py-2.5 text-xs">
             <span className="font-semibold text-[var(--text-primary)]">
-              فَعِّلْ إِشْعَارَاتِ الْهَاتِفِ لِيَصِلَكَ التَّذْكِيرُ كُلَّ رُبْعِ سَاعَةٍ.
+              فعل إشعارات الهاتف عشان التذكير يوصلك كل ربع ساعة.
             </span>
             <button
               type="button"
               onClick={() => void app.handleRequestNotifications()}
               className="shrink-0 rounded-xl bg-emerald-500 px-3 py-1.5 font-black text-slate-950 transition active:scale-95"
             >
-              تَفْعِيل
+              تفعيل
             </button>
           </div>
         )}

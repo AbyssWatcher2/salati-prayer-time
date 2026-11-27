@@ -147,10 +147,10 @@ export function EgyptScheduleTable({
           <table className="w-full text-right text-xs">
             <thead>
               <tr className="border-b border-[var(--border-subtle)] bg-[var(--bg-card-elevated)] text-[var(--text-secondary)]">
-                <th className="px-3.5 py-2.5 font-bold">الصَّلَاةُ</th>
-                <th className="px-3 py-2.5 font-bold">الْمَوْعِدُ</th>
-                <th className="px-3 py-2.5 font-bold">الْوَقْتُ الْمُتَبَقِّي</th>
-                <th className="px-3.5 py-2.5 font-bold">الْحَالَةُ</th>
+                <th className="px-3.5 py-2.5 font-bold">الصلاة</th>
+                <th className="px-3 py-2.5 font-bold">الموعد</th>
+                <th className="px-3 py-2.5 font-bold">فاضل قد ايه</th>
+                <th className="px-3.5 py-2.5 font-bold">الحالة</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-[var(--border-subtle)]">
@@ -158,22 +158,22 @@ export function EgyptScheduleTable({
                 const diff = row.time - now;
                 const remainingText =
                   diff > 0
-                    ? `بَعْدَ ${formatDurationArabic(diff)}`
-                    : `مُنْذُ ${formatDurationArabic(Math.abs(diff))}`;
+                    ? `بعد ${formatDurationArabic(diff)}`
+                    : `منذ ${formatDurationArabic(Math.abs(diff))}`;
 
-                let statusBadge = 'قَادِمَةٌ';
+                let statusBadge = 'قادمة';
                 let badgeClass = 'bg-slate-500/15 text-[var(--text-secondary)]';
                 if (!row.isPrayer) {
-                  statusBadge = diff > 0 ? 'شُرُوقٌ' : 'انْتَهَى';
+                  statusBadge = diff > 0 ? 'شروق' : 'انتهى';
                   badgeClass = 'bg-amber-500/10 text-amber-400';
                 } else if (row.status === 'prayed') {
-                  statusBadge = 'تَمَّتْ ✓';
+                  statusBadge = 'تمت ✓';
                   badgeClass = 'bg-emerald-500/20 text-emerald-400';
                 } else if (row.status === 'due') {
-                  statusBadge = 'وَقْتُهَا الْآنَ';
+                  statusBadge = 'وقتها الآن';
                   badgeClass = 'bg-emerald-500/20 text-emerald-300';
                 } else if (row.status === 'overdue') {
-                  statusBadge = 'فَاتَ وَقْتُهَا';
+                  statusBadge = 'فات وقتها';
                   badgeClass = 'bg-rose-500/20 text-rose-300';
                 }
 
@@ -240,7 +240,7 @@ export function EgyptScheduleTable({
           <table className="w-full min-w-[540px] text-right text-[11px]">
             <thead>
               <tr className="border-b border-[var(--border-subtle)] bg-[var(--bg-card-elevated)] text-[var(--text-secondary)]">
-                <th className="px-3 py-2.5 font-bold">التَّارِيخُ</th>
+                <th className="px-3 py-2.5 font-bold">التاريخ</th>
                 <th className="px-2 py-2.5 font-bold">الْفَجْر</th>
                 <th className="px-2 py-2.5 font-bold">الشُّرُوق</th>
                 <th className="px-2 py-2.5 font-bold">الظُّهْر</th>

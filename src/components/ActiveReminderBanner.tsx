@@ -41,7 +41,7 @@ export function ActiveReminderBanner({
               className="mt-3 inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-emerald-500 px-4 py-3 text-sm font-extrabold text-slate-950 transition active:scale-[0.98]"
             >
               <CheckCircle2 className="h-5 w-5" />
-              تَمَّ الْفَهْمُ — إِغْلَاقُ التَّجْرِبَةِ
+              تم الفهم — إغلاق التجربة
             </button>
           </div>
         </div>
@@ -64,53 +64,53 @@ export function ActiveReminderBanner({
           : 'border-emerald-400/70 bg-gradient-to-br from-emerald-950/90 via-[#0d221c] to-[#081713] text-emerald-50'
       }`}
     >
-      <div className="flex items-start gap-3">
+      <div className="flex items-start gap-2.5">
         <div
-          className={`mt-0.5 shrink-0 rounded-2xl p-2.5 ${
+          className={`mt-0.5 shrink-0 rounded-2xl p-2 ${
             hasOverdue ? 'bg-amber-500/20 text-amber-300' : 'bg-emerald-500/20 text-emerald-300'
           }`}
         >
-          {hasOverdue ? <AlertTriangle className="h-6 w-6" /> : <BellRing className="h-6 w-6" />}
+          {hasOverdue ? <AlertTriangle className="h-5 w-5" /> : <BellRing className="h-5 w-5" />}
         </div>
 
         <div className="min-w-0 flex-1">
           <div className="flex items-center justify-between gap-2">
-            <h2 className="text-base font-black">
-              {hasOverdue ? 'صَلَوَاتٌ فِي انْتِظَارِكَ — قُمْ وَصَلِّ الْآنَ' : 'حَانَ وَقْتُ الصَّلَاةِ'}
+            <h2 className="text-sm sm:text-base font-black">
+              {hasOverdue ? 'صلوات في انتظارك — قوم صلي دلوقتي' : 'حان وقت الصلاة'}
             </h2>
-            <span className="rounded-full bg-white/10 px-2 py-0.5 text-[11px] font-bold">
-              تَذْكِيرٌ كُلَّ {intervalMinutes} د
+            <span className="shrink-0 whitespace-nowrap rounded-full bg-white/10 px-2.5 py-0.5 text-[11px] font-bold">
+              كل {intervalMinutes} د
             </span>
           </div>
 
           <p className="mt-1 text-xs opacity-90">
-            سَيَسْتَمِرُّ التَّذْكِيرُ تِلْقَائِيًّا كُلَّ رُبْعِ سَاعَةٍ حَتَّى بَعْدَ انْتِهَاءِ وَقْتِ الصَّلَاةِ إِلَى أَنْ تَضْغَطَ «صَلَّيْتُ ✓».
+            التذكير هيستمر تلقائيا كل ربع ساعة حتى بعد انتهاء وقت الصلاة لحد ما تضغط «صليت ✓».
           </p>
 
-          <div className="mt-3 space-y-2">
+          <div className="mt-2.5 max-h-56 space-y-2 overflow-y-auto">
             {pendingPrayers.map((p) => {
               const elapsed = formatDurationArabic(now - p.startTime);
               const isOverdue = p.status === 'overdue';
               return (
                 <div
                   key={p.id}
-                  className="flex items-center justify-between gap-2 rounded-2xl bg-black/30 px-3 py-2.5 border border-white/10"
+                  className="flex items-center justify-between gap-2 rounded-2xl border border-white/10 bg-black/30 px-3 py-2"
                 >
                   <div className="min-w-0">
                     <div className="flex items-center gap-2">
-                      <span className="text-sm font-extrabold">صَلَاةُ {p.arabicName}</span>
+                      <span className="text-sm font-extrabold">صلاة {p.arabicName}</span>
                       <span
-                        className={`rounded-full px-2 py-0.5 text-[10px] font-bold ${
+                        className={`shrink-0 whitespace-nowrap rounded-full px-2 py-0.5 text-[10px] font-bold ${
                           isOverdue
                             ? 'bg-rose-500/25 text-rose-200'
                             : 'bg-emerald-500/25 text-emerald-200'
                         }`}
                       >
-                        {isOverdue ? 'فَاتَ وَقْتُهَا' : 'وَقْتُهَا الْآنَ'}
+                        {isOverdue ? 'فات وقتها' : 'وقتها الآن'}
                       </span>
                     </div>
                     <p className="mt-0.5 text-[11px] opacity-80">
-                      دَخَلَ وَقْتُهَا {formatTimeAr(p.startTime)} • مُنْذُ {elapsed}
+                      أذنت {formatTimeAr(p.startTime)} • منذ {elapsed}
                     </p>
                   </div>
 
@@ -120,7 +120,7 @@ export function ActiveReminderBanner({
                     className="shrink-0 inline-flex items-center gap-1.5 rounded-xl bg-emerald-500 px-3 py-2 text-xs font-black text-slate-950 transition active:scale-95"
                   >
                     <CheckCircle2 className="h-4 w-4" />
-                    صَلَّيْتُ
+                    صليت
                   </button>
                 </div>
               );
@@ -131,19 +131,19 @@ export function ActiveReminderBanner({
             <button
               type="button"
               onClick={() => onMarkAllPrayed(pendingIds)}
-              className="inline-flex min-h-[46px] items-center justify-center gap-1.5 rounded-2xl bg-emerald-500 px-3 py-2.5 text-sm font-black text-slate-950 shadow transition active:scale-[0.98]"
+              className="inline-flex min-h-[46px] items-center justify-center gap-1.5 rounded-2xl bg-emerald-500 px-2.5 py-2.5 text-xs sm:text-sm font-black text-slate-950 shadow transition active:scale-[0.98]"
             >
-              <CheckCircle2 className="h-5 w-5" />
-              {pendingPrayers.length > 1 ? 'الْحَمْدُ لِلَّهِ، صَلَّيْتُهَا كُلَّهَا ✓' : 'الْحَمْدُ لِلَّهِ، صَلَّيْتُ ✓'}
+              <CheckCircle2 className="h-4 w-4 shrink-0" />
+              {pendingPrayers.length > 1 ? 'الْحَمْدُ لِلَّهِ، صليتهم كلهم ✓' : 'الْحَمْدُ لِلَّهِ، صليت ✓'}
             </button>
 
             <button
               type="button"
               onClick={() => onSnooze(pendingIds)}
-              className="inline-flex min-h-[46px] items-center justify-center gap-1.5 rounded-2xl border border-white/20 bg-white/10 px-3 py-2.5 text-xs font-bold text-white transition active:scale-[0.98]"
+              className="inline-flex min-h-[46px] items-center justify-center gap-1.5 rounded-2xl border border-white/20 bg-white/10 px-2.5 py-2.5 text-xs font-bold text-white transition active:scale-[0.98]"
             >
-              <Clock className="h-4 w-4" />
-              ذَكِّرْنِي بَعْدَ {intervalMinutes} دَقِيقَةً
+              <Clock className="h-4 w-4 shrink-0" />
+              فكرني بعد {intervalMinutes} د
             </button>
           </div>
         </div>
