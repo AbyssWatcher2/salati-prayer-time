@@ -1,4 +1,4 @@
-const CACHE_NAME = 'salati-egypt-v2';
+const CACHE_NAME = 'salati-egypt-v3';
 const SHELL_ASSETS = [
   './',
   './index.html',

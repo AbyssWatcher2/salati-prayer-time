@@ -8,6 +8,7 @@ const STORE_NAME = 'pendingActions';
 export const DEFAULT_SETTINGS: ReminderSettings = {
   governorateId: 'cairo',
   customLocation: null,
+  remindersEnabled: true,
   reminderIntervalMinutes: 15,
   continueAfterEnd: true,
   carryOverYesterday: false,

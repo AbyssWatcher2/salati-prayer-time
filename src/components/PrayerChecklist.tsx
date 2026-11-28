@@ -1,4 +1,4 @@
-import { Bell, Check, CheckCircle2, Clock, RotateCcw, Sun, X } from 'lucide-react';
+import { Bell, BellOff, Check, CheckCircle2, Clock, RotateCcw, Sun, X } from 'lucide-react';
 import {
   formatDurationArabic,
   formatShortMMSS,
@@ -20,6 +20,8 @@ interface PrayerChecklistProps {
   settings: ReminderSettings;
   yesterdayUnprayed: PrayerScheduleItem[];
   onTogglePrayer: (id: PrayerId) => void;
+  onToggleMutePrayer: (id: PrayerId) => void;
+  onToggleAllReminders: (enabled: boolean) => void;
   onMarkYesterdayPrayer: (id: PrayerId) => void;
   onDismissYesterdayPrayer: (id: PrayerId) => void;
 }
@@ -31,18 +33,38 @@ export function PrayerChecklist({
   settings,
   yesterdayUnprayed,
   onTogglePrayer,
+  onToggleMutePrayer,
+  onToggleAllReminders,
   onMarkYesterdayPrayer,
   onDismissYesterdayPrayer,
 }: PrayerChecklistProps) {
   return (
     <section className="space-y-3">
-      <div className="flex items-center justify-between px-1">
-        <div>
+      <div className="space-y-1 px-1">
+        <div className="flex items-center justify-between gap-2">
           <h2 className="text-base font-black">قائمة صلوات اليوم (Checklist)</h2>
-          <p className="text-xs text-[var(--text-secondary)]">
-            اضغط «صليت» لإيقاف التذكير كل {settings.reminderIntervalMinutes} دقيقة عن الصلاة
-          </p>
+          <button
+            type="button"
+            aria-label="التذكير"
+            aria-pressed={settings.remindersEnabled}
+            onClick={() => onToggleAllReminders(!settings.remindersEnabled)}
+            className={`inline-flex min-h-11 shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full border px-3 text-xs font-bold transition active:scale-95 ${
+              settings.remindersEnabled
+                ? 'border-emerald-500/35 bg-emerald-500/15 text-emerald-300'
+                : 'border-amber-500/35 bg-amber-500/15 text-amber-300'
+            }`}
+          >
+            {settings.remindersEnabled ? (
+              <Bell className="h-4 w-4" aria-hidden="true" />
+            ) : (
+              <BellOff className="h-4 w-4" aria-hidden="true" />
+            )}
+            {settings.remindersEnabled ? 'التذكير: شغال' : 'التذكير: متوقف'}
+          </button>
         </div>
+        <p className="text-xs text-[var(--text-secondary)]">
+          اضغط «صليت» لتسجيل الصلاة، أو × لإيقاف تذكيرها.
+        </p>
       </div>
 
       <div className="space-y-2.5">
@@ -54,6 +76,8 @@ export function PrayerChecklist({
             nextReminderAt !== null ? Math.max(0, nextReminderAt - now) : null;
 
           const isPrayed = status === 'prayed';
+          const isMuted = status === 'muted';
+          const muteLabel = isMuted ? 'تفعيل التذكير' : 'إلغاء التذكير';
           const isDue = status === 'due';
           const isOverdue = status === 'overdue';
           const isUpcoming = status === 'upcoming';
@@ -90,6 +114,12 @@ export function PrayerChecklist({
                         </span>
                       )}
 
+                      {isMuted && (
+                        <span className="inline-flex items-center gap-1 rounded-full bg-slate-500/20 px-2 py-0.5 text-[11px] font-bold text-[var(--text-secondary)]">
+                          تم إيقاف التذكير
+                        </span>
+                      )}
+
                       {isDue && (
                         <span className="inline-flex items-center gap-1 rounded-full bg-emerald-500/20 px-2 py-0.5 text-[11px] font-bold text-emerald-300">
                           <Bell className="h-3 w-3" />
@@ -99,7 +129,7 @@ export function PrayerChecklist({
 
                       {isOverdue && (
                         <span className="inline-flex items-center gap-1 rounded-full bg-amber-500/20 px-2 py-0.5 text-[11px] font-bold text-amber-400">
-                          فات وقتها — مستمر التذكير
+                          {nextReminderAt === null ? 'فات وقتها' : 'فات وقتها — مستمر التذكير'}
                         </span>
                       )}
 
@@ -146,31 +176,51 @@ export function PrayerChecklist({
                     ) : null}
                   </div>
 
-                  {/* Tactile Checklist Button */}
-                  <button
-                    type="button"
-                    onClick={() => onTogglePrayer(prayer.id)}
-                    aria-pressed={isPrayed}
-                    className={`flex min-h-[54px] min-w-[96px] shrink-0 flex-col items-center justify-center gap-0.5 rounded-2xl px-3 py-2 text-xs font-black transition active:scale-95 ${
-                      isPrayed
-                        ? 'border border-emerald-500/40 bg-emerald-500/20 text-emerald-300'
-                        : isDue || isOverdue
-                          ? 'bg-emerald-500 text-slate-950 shadow-md shadow-emerald-500/20'
-                          : 'border border-[var(--border-strong)] bg-[var(--bg-card-elevated)] text-[var(--text-primary)]'
-                    }`}
-                  >
-                    {isPrayed ? (
-                      <>
-                        <CheckCircle2 className="h-5 w-5 text-emerald-400" />
-                        <span>صليت ✓</span>
-                      </>
-                    ) : (
-                      <>
-                        <span className="h-5 w-5 rounded-full border-2 border-current opacity-80" />
-                        <span>علم صليت</span>
-                      </>
+                  <div className="flex items-center gap-1.5 shrink-0">
+                    <button
+                      type="button"
+                      onClick={() => onTogglePrayer(prayer.id)}
+                      aria-pressed={isPrayed}
+                      className={`flex min-h-[54px] min-w-[96px] shrink-0 flex-col items-center justify-center gap-0.5 rounded-2xl px-3 py-2 text-xs font-black transition active:scale-95 ${
+                        isPrayed
+                          ? 'border border-emerald-500/40 bg-emerald-500/20 text-emerald-300'
+                          : isDue || isOverdue
+                            ? 'bg-emerald-500 text-slate-950 shadow-md shadow-emerald-500/20'
+                            : 'border border-[var(--border-strong)] bg-[var(--bg-card-elevated)] text-[var(--text-primary)]'
+                      }`}
+                    >
+                      {isPrayed ? (
+                        <>
+                          <CheckCircle2 className="h-5 w-5 text-emerald-400" />
+                          <span>صليت ✓</span>
+                        </>
+                      ) : (
+                        <>
+                          <span className="h-5 w-5 rounded-full border-2 border-current opacity-80" />
+                          <span>علم صليت</span>
+                        </>
+                      )}
+                    </button>
+                    {!isPrayed && (
+                      <button
+                        type="button"
+                        onClick={() => onToggleMutePrayer(prayer.id)}
+                        aria-label={muteLabel}
+                        title={muteLabel}
+                        className={`flex min-h-[54px] w-11 items-center justify-center rounded-2xl border transition active:scale-95 ${
+                          isMuted
+                            ? 'border-amber-500/40 bg-amber-500/15 text-amber-300'
+                            : 'border-rose-500/30 bg-rose-500/10 text-rose-300'
+                        }`}
+                      >
+                        {isMuted ? (
+                          <BellOff className="h-5 w-5" aria-hidden="true" />
+                        ) : (
+                          <X className="h-5 w-5" aria-hidden="true" />
+                        )}
+                      </button>
                     )}
-                  </button>
+                  </div>
                 </div>
               </div>
 

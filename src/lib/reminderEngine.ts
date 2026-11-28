@@ -10,6 +10,10 @@ import type {
   ReminderSettings,
 } from '../types/prayer';
 
+type ReminderTimingSettings = Pick<ReminderSettings, 'reminderIntervalMinutes' | 'continueAfterEnd'> & {
+  remindersEnabled?: boolean;
+};
+
 export function createEmptyPrayerRecord(): PrayerRecord {
   return {
     prayed: false,
@@ -49,6 +53,9 @@ export function getPrayerStatus(
   if (record?.prayed) {
     return 'prayed';
   }
+  if (record?.muted) {
+    return 'muted';
+  }
   if (now < prayer.startTime) {
     return 'upcoming';
   }
@@ -61,9 +68,9 @@ export function getPrayerStatus(
 export function getNextReminderAt(
   prayer: PrayerScheduleItem,
   record: PrayerRecord | undefined,
-  settings: Pick<ReminderSettings, 'reminderIntervalMinutes' | 'continueAfterEnd'>,
+  settings: ReminderTimingSettings,
 ): number | null {
-  if (record?.prayed) {
+  if (record?.prayed || record?.muted || settings.remindersEnabled === false) {
     return null;
   }
 
@@ -106,8 +113,12 @@ export function evaluateReminders(
   schedule: DailySchedule,
   dayLog: DayLog | undefined,
   now: number,
-  settings: Pick<ReminderSettings, 'reminderIntervalMinutes' | 'continueAfterEnd'>,
+  settings: ReminderTimingSettings,
 ): ReminderEvaluation {
+  if (settings.remindersEnabled === false) {
+    return { duePrayers: [], pendingPrayers: [], nextUpcomingReminderAt: null };
+  }
+
   const log = ensureDayLog(dayLog);
   const duePrayers: EvaluatedPrayer[] = [];
   const pendingPrayers: EvaluatedPrayer[] = [];
@@ -157,6 +168,7 @@ export function markPrayerPrayed(
   nextLog[prayerId] = {
     ...existing,
     prayed: true,
+    muted: false,
     prayedAt: now,
     statusWhenPrayed: now < prayerEndTime ? 'on-time' : 'late',
     snoozedUntil: undefined,
@@ -178,6 +190,45 @@ export function unmarkPrayerPrayed(dayLog: DayLog | undefined, prayerId: PrayerI
   return nextLog;
 }
 
+function mutePrayerRecord(record: PrayerRecord): PrayerRecord {
+  return {
+    ...record,
+    muted: true,
+    prayed: false,
+    prayedAt: undefined,
+    statusWhenPrayed: undefined,
+    snoozedUntil: undefined,
+  };
+}
+
+export function mutePrayerReminder(dayLog: DayLog | undefined, prayerId: PrayerId): DayLog {
+  const nextLog = ensureDayLog(dayLog);
+  nextLog[prayerId] = mutePrayerRecord(nextLog[prayerId]);
+  return nextLog;
+}
+
+export function unmutePrayerReminder(dayLog: DayLog | undefined, prayerId: PrayerId): DayLog {
+  const nextLog = ensureDayLog(dayLog);
+  nextLog[prayerId] = {
+    ...nextLog[prayerId],
+    muted: false,
+    lastRemindedAt: undefined,
+    snoozedUntil: undefined,
+  };
+  return nextLog;
+}
+
+export function muteMultiplePrayers(dayLog: DayLog | undefined, prayerIds: PrayerId[]): DayLog {
+  const nextLog = ensureDayLog(dayLog);
+  for (const id of prayerIds) {
+    const record = nextLog[id];
+    if (!record.prayed) {
+      nextLog[id] = mutePrayerRecord(record);
+    }
+  }
+  return nextLog;
+}
+
 export function snoozePrayers(
   dayLog: DayLog | undefined,
   prayerIds: PrayerId[],
@@ -188,7 +239,7 @@ export function snoozePrayers(
   const snoozedUntil = now + Math.max(1, minutes) * 60_000;
   for (const id of prayerIds) {
     const existing = nextLog[id];
-    if (!existing.prayed) {
+    if (!existing.prayed && !existing.muted) {
       nextLog[id] = {
         ...existing,
         snoozedUntil,
@@ -207,7 +258,7 @@ export function recordReminderFired(
   const nextLog = ensureDayLog(dayLog);
   for (const id of prayerIds) {
     const existing = nextLog[id];
-    if (!existing.prayed) {
+    if (!existing.prayed && !existing.muted) {
       nextLog[id] = {
         ...existing,
         lastRemindedAt: now,

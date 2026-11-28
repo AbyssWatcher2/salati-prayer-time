@@ -25,7 +25,7 @@ export function App() {
           onOpenSchedule={() => setActiveTab('schedule')}
         />
 
-        {app.notifPerm === 'default' && activeTab === 'today' && (
+        {app.settings.remindersEnabled && app.notifPerm === 'default' && activeTab === 'today' && (
           <div className="surface-elevated flex items-center justify-between gap-3 rounded-2xl border border-emerald-500/35 px-3.5 py-2.5 text-xs">
             <span className="font-semibold text-[var(--text-primary)]">
               فعل إشعارات الهاتف عشان التذكير يوصلك كل ربع ساعة.
@@ -49,6 +49,8 @@ export function App() {
               intervalMinutes={app.settings.reminderIntervalMinutes}
               onMarkAllPrayed={(ids) => app.markPrayersDone(ids)}
               onMarkSinglePrayed={(id) => app.togglePrayer(id)}
+              onMuteSinglePrayer={(id) => app.toggleMutePrayer(id)}
+              onMuteAllPending={(ids) => app.mutePrayers(ids)}
               onSnooze={(ids) => app.snoozePendingPrayers(ids)}
               onDismissTest={app.dismissAlertPopup}
             />
@@ -60,6 +62,8 @@ export function App() {
               settings={app.settings}
               yesterdayUnprayed={app.yesterdayUnprayed}
               onTogglePrayer={(id) => app.togglePrayer(id)}
+              onToggleMutePrayer={(id) => app.toggleMutePrayer(id)}
+              onToggleAllReminders={(enabled) => app.updateSettings({ remindersEnabled: enabled })}
               onMarkYesterdayPrayer={(id) => app.markPrayersDone([id], app.yesterdayKey)}
               onDismissYesterdayPrayer={app.dismissYesterdayPrayer}
             />

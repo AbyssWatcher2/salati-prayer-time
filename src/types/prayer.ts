@@ -1,6 +1,6 @@
 export type PrayerId = 'fajr' | 'dhuhr' | 'asr' | 'maghrib' | 'isha';
 
-export type PrayerStatus = 'upcoming' | 'due' | 'overdue' | 'prayed';
+export type PrayerStatus = 'upcoming' | 'due' | 'overdue' | 'prayed' | 'muted';
 
 export type SoundChoice = 'adhan-chime' | 'gentle' | 'strong' | 'silent';
 
@@ -42,6 +42,7 @@ export interface NextPrayerInfo {
 
 export interface PrayerRecord {
   prayed: boolean;
+  muted?: boolean;
   prayedAt?: number;
   statusWhenPrayed?: 'on-time' | 'late';
   lastRemindedAt?: number;
@@ -63,6 +64,7 @@ export interface ReminderSettings {
     longitude: number;
     labelAr: string;
   } | null;
+  remindersEnabled: boolean;
   reminderIntervalMinutes: number;
   continueAfterEnd: boolean;
   carryOverYesterday: boolean;

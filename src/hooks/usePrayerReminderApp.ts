@@ -16,9 +16,12 @@ import {
   ensureDayLog,
   evaluateReminders,
   markPrayerPrayed,
+  muteMultiplePrayers,
+  mutePrayerReminder,
   recordReminderFired,
   snoozePrayers,
   unmarkPrayerPrayed,
+  unmutePrayerReminder,
 } from '../lib/reminderEngine';
 import {
   getNotificationPermission,
@@ -382,6 +385,39 @@ export function usePrayerReminderApp() {
     [schedule, todayKey, yesterdayKey, yesterdaySchedule],
   );
 
+  const toggleMutePrayer = useCallback(
+    (prayerId: PrayerId) => {
+      setLogsByDate((prev) => {
+        const dayLog = prev[todayKey];
+        const record = dayLog?.[prayerId];
+        if (record?.prayed) return prev;
+
+        const updatedDay = record?.muted
+          ? unmutePrayerReminder(dayLog, prayerId)
+          : mutePrayerReminder(dayLog, prayerId);
+        return { ...prev, [todayKey]: updatedDay };
+      });
+
+      setActiveAlert((prev) => {
+        if (!prev?.prayerIds.includes(prayerId)) return prev;
+        const remaining = prev.prayerIds.filter((id) => id !== prayerId);
+        return remaining.length > 0 ? { ...prev, prayerIds: remaining } : null;
+      });
+    },
+    [todayKey],
+  );
+
+  const mutePrayers = useCallback(
+    (prayerIds: PrayerId[]) => {
+      setLogsByDate((prev) => ({
+        ...prev,
+        [todayKey]: muteMultiplePrayers(prev[todayKey], prayerIds),
+      }));
+      setActiveAlert(null);
+    },
+    [todayKey],
+  );
+
   const markPrayersDone = useCallback(
     (prayerIds: PrayerId[], dateKeyOverride?: string) => {
       void unlockAudio();
@@ -441,6 +477,9 @@ export function usePrayerReminderApp() {
       ...patch,
       offsets: patch.offsets ? { ...prev.offsets, ...patch.offsets } : prev.offsets,
     }));
+    if (patch.remindersEnabled === false) {
+      setActiveAlert(null);
+    }
   }, []);
 
   const handleRequestNotifications = useCallback(async () => {
@@ -567,6 +606,8 @@ export function usePrayerReminderApp() {
     gpsStatus,
     testBannerMsg,
     togglePrayer,
+    toggleMutePrayer,
+    mutePrayers,
     markPrayersDone,
     snoozePendingPrayers,
     dismissYesterdayPrayer,

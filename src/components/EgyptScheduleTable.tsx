@@ -169,6 +169,9 @@ export function EgyptScheduleTable({
                 } else if (row.status === 'prayed') {
                   statusBadge = 'تمت ✓';
                   badgeClass = 'bg-emerald-500/20 text-emerald-400';
+                } else if (row.status === 'muted') {
+                  statusBadge = 'بدون تذكير';
+                  badgeClass = 'bg-slate-500/20 text-[var(--text-secondary)]';
                 } else if (row.status === 'due') {
                   statusBadge = 'وقتها الآن';
                   badgeClass = 'bg-emerald-500/20 text-emerald-300';

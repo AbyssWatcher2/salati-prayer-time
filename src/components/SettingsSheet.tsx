@@ -77,6 +77,26 @@ export function SettingsSheet({
           </span>
         </div>
 
+        <label className="flex min-h-11 cursor-pointer items-center justify-between gap-3 rounded-xl bg-[var(--bg-input)] p-3 text-xs">
+          <span>
+            <span id="automatic-reminders-title" className="block font-extrabold">
+              تفعيل التذكير التلقائي بالصلاة (اختياري)
+            </span>
+            <span id="automatic-reminders-description" className="text-[11px] text-[var(--text-secondary)]">
+              تقدر توقف التذكير عن كل الصلوات في أي وقت
+            </span>
+          </span>
+          <input
+            type="checkbox"
+            role="switch"
+            checked={settings.remindersEnabled}
+            onChange={(e) => onUpdateSettings({ remindersEnabled: e.target.checked })}
+            aria-labelledby="automatic-reminders-title"
+            aria-describedby="automatic-reminders-description"
+            className="h-5 w-5 shrink-0 accent-emerald-500"
+          />
+        </label>
+
         <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
           {notifPerm !== 'granted' && notifPerm !== 'unsupported' && (
             <button
